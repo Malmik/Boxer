@@ -15,7 +15,7 @@ function ui.addtileset(name, quad_path, image_path)
     bg = {}
   }
 
-  --ui.t[name].image:setFilter("nearest", "nearest")
+  ui.t[name].image:setFilter("nearest", "nearest")
 
   local i
   while next(cordinates, i) ~= nil do
