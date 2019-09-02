@@ -178,33 +178,35 @@ end
 
 function ui.draw(name, x, y, w, h, sx, sy)
   local menu = ui.m[name]
+  local image = ui.t[menu.tileset].image
+  local quad = ui.t[menu.tileset].quad
 
   if menu.w >= (ui.t[menu.tileset].cords.left_top.w + ui.t[menu.tileset].cords.right_down.w) and menu.h >= (ui.t[menu.tileset].cords.right_top.h + ui.t[menu.tileset].cords.left_down.h) then
----[[
+
     for i = menu.cache.upSTART, menu.cache.upEND, 1 do
-      love.graphics.draw(ui.t[menu.tileset].image, ui.t[menu.tileset].quad.up, i, menu.y, nil, menu.sx, menu.sy)
+      love.graphics.draw(image, quad.up, i, menu.y, nil, menu.sx, menu.sy)
     end
     for i = menu.cache.leftSTART, menu.cache.leftEND, 1 do
-      love.graphics.draw(ui.t[menu.tileset].image, ui.t[menu.tileset].quad.left, menu.x, i, nil, menu.sx, menu.sy)
+      love.graphics.draw(image, quad.left, menu.x, i, nil, menu.sx, menu.sy)
     end
     for i = menu.cache.rightSTART, menu.cache.rightEND, 1 do
-      love.graphics.draw(ui.t[menu.tileset].image, ui.t[menu.tileset].quad.right, menu.cache.rightX, i, nil, menu.sx, menu.sy)
+      love.graphics.draw(image, quad.right, menu.cache.rightX, i, nil, menu.sx, menu.sy)
     end
     for i = menu.cache.downSTART, menu.cache.downEND, 1 do
-      love.graphics.draw(ui.t[menu.tileset].image, ui.t[menu.tileset].quad.down, i, menu.cache.downY, nil, menu.sx, menu.sy)
+      love.graphics.draw(image, quad.down, i, menu.cache.downY, nil, menu.sx, menu.sy)
     end
-    ---[[
-    love.graphics.draw(ui.t[menu.tileset].image, ui.t[menu.tileset].quad.left_top, menu.x, menu.y, nil, menu.sx, menu.sy)
-    love.graphics.draw(ui.t[menu.tileset].image, ui.t[menu.tileset].quad.right_top, menu.cache.rightTopX, menu.y, nil, menu.sx, menu.sy)
-    love.graphics.draw(ui.t[menu.tileset].image, ui.t[menu.tileset].quad.left_down, menu.x, menu.cache.leftDownY, nil, menu.sx, menu.sy)
-    love.graphics.draw(ui.t[menu.tileset].image, ui.t[menu.tileset].quad.right_down, menu.cache.rightDownX, menu.cache.rightDownY, nil, menu.sx, menu.sy)
---]]
+
+    love.graphics.draw(image, quad.left_top, menu.x, menu.y, nil, menu.sx, menu.sy)
+    love.graphics.draw(image, quad.right_top, menu.cache.rightTopX, menu.y, nil, menu.sx, menu.sy)
+    love.graphics.draw(image, quad.left_down, menu.x, menu.cache.leftDownY, nil, menu.sx, menu.sy)
+    love.graphics.draw(image, quad.right_down, menu.cache.rightDownX, menu.cache.rightDownY, nil, menu.sx, menu.sy)
+
     love.graphics.setColor(ui.t[menu.tileset].bg.r, ui.t[menu.tileset].bg.g, ui.t[menu.tileset].bg.b, ui.t[menu.tileset].bg.a, nil, menu.sx, menu.sy)
     love.graphics.rectangle("fill", menu.bgx, menu.bgy, menu.bgw, menu.bgh)
     love.graphics.setColor(1,1,1,1)
 
     for k,v in pairs(menu.button) do
-      love.graphics.draw(ui.t[menu.tileset].image, v.quad[v.state], v.x, v.y, nil, menu.sx, menu.sy)
+      love.graphics.draw(image, v.quad[v.state], v.x, v.y, nil, menu.sx, menu.sy)
     end
   end
 
